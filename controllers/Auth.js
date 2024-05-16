@@ -93,7 +93,7 @@ exports.login = async (req, res) => {
     }
 
     //check for registered user
-    const user = await User.findOne({ email });
+    var user = await User.findOne({ email }).select('+password');
     //if not a registered user
     if (!user) {
       return res.status(401).json({
